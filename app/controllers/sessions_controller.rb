@@ -10,11 +10,14 @@ class SessionsController < ApplicationController
       redirect_to root_url
     else
       flash.now[:danger] = "ログインに失敗しました。"
-      render :now
+      render :new
     end
   end
 
   def destroy
+    session[:user_id] =nil
+    flash[:success] ="ログアウトしました。"
+    redirect_to sessions_new_path
   end
   
   private
